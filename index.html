@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NKD Community</title>
+
+    <link rel="stylesheet" href="StylesCommon.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="primaryContainerDiv container">
+      <div id="loadingSpinner" style="display: none">
+        <div class="spinner"></div>
+      </div>
+      <div class="infoPopup" id="successPopup">
+        <div class="infoPopup-content">
+          <div class="infoPopup-icon success"></div>
+          <h2 class="infoPopup-heading success">Success!</h2>
+          <div id="successMessage" class="infoPopup-message"></div>
+          <button class="green" onclick="CLOSE_INFO_POPUP('successPopup')">
+            OKAY
+          </button>
+        </div>
+      </div>
+      <div class="infoPopup" id="errorPopup">
+        <div class="infoPopup-content">
+          <div class="infoPopup-icon error"></div>
+          <h2 class="infoPopup-heading error">Error!</h2>
+          <div id="errorMessage" class="infoPopup-message"></div>
+          <button class="red" onclick="CLOSE_INFO_POPUP('errorPopup')">
+            TRY AGAIN
+          </button>
+        </div>
+      </div>
+      <div class="infoPopup" id="confirmationPopup">
+        <div class="infoPopup-content">
+          <div class="infoPopup-icon confirmation"></div>
+          <div class="infoPopup-message" id="confirmationMessage"></div>
+          <div class="button-row">
+            <button class="red" id="confirmationNoButton">NO</button>
+            <button class="green" id="confirmationYesButton">YES</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="infoPopup" id="confirmationGridPopup">
+        <div class="infoPopup-content">
+          <div class="infoPopup-icon confirmation"></div>
+
+          <!-- Status Text Area -->
+          <div id="confirmationGridStatusText" class="heading"></div>
+
+          <!-- Table Grid Container -->
+          <div
+            id="confirmationGridContainer"
+            class="collection-table-container scrollable-content-table"
+            style="margin-top: 10px"
+          >
+            <table id="confirmationGridTable">
+              <thead id="confirmationGridTHead" class="table-header">
+                <!-- Table headers will be dynamically generated here -->
+              </thead>
+              <tbody id="confirmationGridTBody">
+                <!-- Table rows will be dynamically generated here -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Buttons for Confirmation -->
+          <div class="button-row">
+            <button class="red" id="confirmationGridNoButton">NO</button>
+            <button class="green" id="confirmationGridYesButton">YES</button>
+          </div>
+        </div>
+      </div>
+      <label for="subjectSelect">Select Subject:</label>
+      <select id="subjectSelect"></select>
+
+      <form id="paperForm"></form>
+      <button type="button" class="green" onclick="submitPaper()">
+        Generate Paper
+      </button>
+      <div id="preview"></div>
+    </div>
+    <script src="ScriptCommon.js"></script>
+    <script src="ScriptConstants.js"></script>
+    <script src="Script.js"></script>
+  </body>
+</html>
